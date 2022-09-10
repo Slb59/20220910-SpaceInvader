@@ -1,5 +1,5 @@
 import pygame
-from pygame.locals import *
+from game import Game
 
 pygame.init()
 
@@ -17,11 +17,22 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 background = pygame.image.load('assets/desert-background-looped.png')
 background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT*2))
 
+# charger le jeu
+game = Game()
+
 running = True
 
 background_loop_i = 0
 
 while running:
+
+    clock.tick(FPS)
+
+    # mise a jour du jeu
+    game.update(screen)
+
+    # mettre a jour l'ecran
+    pygame.display.flip()
 
     # appliquer l'arriere plan
     screen.fill((0, 0, 0))
@@ -41,7 +52,14 @@ while running:
             print("Fermeture du jeu")
             exit()
 
-    pygame.display.update()
-    clock.tick(FPS)
+        # le joueur lache une touche du clavier
+        elif event.type == pygame.KEYDOWN:
+            game.pressed[event.key] = True
+
+        elif event.type == pygame.KEYUP:
+            game.pressed[event.key] = False
+
+
+
 
 
