@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab10a18-7b7a-4cfe-95b1-ee3dad9552ca" name="Changes" comment="Add the background">
-      <change afterPath="$PROJECT_DIR$/animation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
+    <list default="true" id="5ab10a18-7b7a-4cfe-95b1-ee3dad9552ca" name="Changes" comment="Add player and center animation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +101,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662825922057</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add player and center animation">
+      <created>1662838136968</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1662838137003</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add player and center animation">
+      <created>1662838147320</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662838147320</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,6 +135,7 @@
     </ignored-roots>
     <MESSAGE value="Creation de l'environnement de développement" />
     <MESSAGE value="Add the background" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add the background" />
+    <MESSAGE value="Add player and center animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add player and center animation" />
   </component>
 </project>

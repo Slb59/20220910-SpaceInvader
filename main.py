@@ -5,7 +5,7 @@ pygame.init()
 
 # definir une clock
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 100
 
 SCREEN_WIDTH = 1080
 SCREEN_HEIGHT = 720
@@ -58,6 +58,7 @@ while running:
 
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
+
 
 
 
