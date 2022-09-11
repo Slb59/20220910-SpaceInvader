@@ -1,33 +1,45 @@
 import pygame
 from player import Player
+import math
 
 class Game():
 
-    def __init__(self):
+    def __init__(self, screen):
 
-        # le joueur
-        self.player = Player(self)
+        self.screen = screen
+
+        # The player
+        self.all_players = pygame.sprite.Group()
+        self.player = Player(self, math.ceil(self.screen.get_width()/2) - 10,  self.screen.get_height() - 150)
+        self.all_players.add(self.player)
 
         # ensemble des touches utilisees
         self.pressed = {}
 
-    def update(self, screen):
+    def game_over(self):
+        self.player.health = self.player.max_health
+
+    def update(self):
 
         #appliquer l'image du joueur
-        screen.blit(self.player.image, self.player.rect)
+        self.screen.blit(self.player.image, self.player.rect)
 
         # actualiser l'animation du joueur
         self.player.animate()
 
+        # actualiser la barre de vie du joueur
+        self.player.update_health_bar(self.screen)
 
         # verifier si le joueur souhaite bouger le vaisseau
-        if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x + self.player.rect.width < screen.get_width():
+        if self.pressed.get(pygame.K_RIGHT) \
+                and self.player.rect.x + self.player.rect.width < self.screen.get_width():
             self.player.move_right()
         elif self.pressed.get(pygame.K_LEFT) and self.player.rect.x > 0:
             self.player.move_left()
         elif self.pressed.get(pygame.K_UP) and self.player.rect.y > 0:
             self.player.move_up()
-        elif self.pressed.get(pygame.K_DOWN) and self.player.rect.y + self.player.rect.height < screen.get_height():
+        elif self.pressed.get(pygame.K_DOWN) \
+                and self.player.rect.y + self.player.rect.height < self.screen.get_height():
             self.player.move_down()
         else:
             self.player.no_move()

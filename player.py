@@ -2,12 +2,9 @@ import pygame
 import math
 import random
 
-SCREEN_WIDTH = 1080
-SCREEN_HEIGHT = 720
-
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, game):
+    def __init__(self, game, x, y):
         super().__init__()
 
         # charge l'image du vaisseau
@@ -16,8 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.image.set_colorkey([0, 0, 0])
         self.image = pygame.transform.scale(self.image, (self.image.get_width()*4, self.image.get_height()*4))
         self.rect = self.image.get_rect()
-        self.rect.x = math.ceil(SCREEN_WIDTH/2) - 10
-        self.rect.y = SCREEN_HEIGHT - 150
+        self.rect.center = [x, y]
 
         # gere l'animation du vaisseau
         self.current_image = 0
@@ -35,17 +31,20 @@ class Player(pygame.sprite.Sprite):
 
         # caractéristiques du vaisseau
         self.velocity = 5
+        self.health = 100
+        self.max_health = 100
 
         self.game = game
 
+    def update_health_bar(self, surface):
+
+        # dessin de la barre de vie
+        pygame.draw.rect(surface, (60, 63, 60), [self.rect.x - 15, self.rect.y + 100, self.max_health, 7])
+        pygame.draw.rect(surface, (111, 210, 46), [self.rect.x - 15, self.rect.y + 100, self.health, 7])
 
     def animate(self):
         # passer a l'image suivante
         self.current_image = random.randint(0, 1)
-
-        # verifie si atteint la fin de l'animation
-        # if self.current_image >= len(self.current_images):
-        #    self.current_image = 0
 
         # modifier l'image de l'animation courante
         self.image = self.current_images[self.current_image]

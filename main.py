@@ -18,7 +18,7 @@ background = pygame.image.load('assets/desert-background-looped.png')
 background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT*2))
 
 # charger le jeu
-game = Game()
+game = Game(screen)
 
 running = True
 
@@ -29,7 +29,7 @@ while running:
     clock.tick(FPS)
 
     # mise a jour du jeu
-    game.update(screen)
+    game.update()
 
     # mettre a jour l'ecran
     pygame.display.flip()
