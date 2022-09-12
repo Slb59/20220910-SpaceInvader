@@ -11,9 +11,10 @@ class Projectile(animation.AnimateSprite):
         self.player = player
 
         self.rect = self.image.get_rect()
-        self.rect.center = [self.player.rect.x + 20, self.player.rect.y - 10]
+        self.rect.center = [self.player.rect.centerx, self.player.rect.top ]
 
         self.animation_images = [self.get_image(0, 16), self.get_image(16, 16)]
+
 
         self.velocity = 3
         self.scale = 2

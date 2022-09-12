@@ -2,6 +2,7 @@ import pygame
 from player import Player
 import math
 from sounds import SoundManager
+from monster import Monster
 
 class Game():
 
@@ -14,6 +15,9 @@ class Game():
         self.player = Player(self, math.ceil(self.screen.get_width()/2) - 10,  self.screen.get_height() - 150)
         self.all_players.add(self.player)
 
+        # set the monster group
+        self.all_monsters = pygame.sprite.Group()
+
         # ensemble des touches utilisees
         self.pressed = {}
 
@@ -22,9 +26,19 @@ class Game():
 
     def start(self):
         self.sound_manager.play_ambiant()
+        self.add_27_monsters()
 
     def game_over(self):
+        # set the health to max
         self.player.health = self.player.max_health
+
+        # delete all monsters
+        self.all_monsters = pygame.sprite.Group()
+
+    def add_27_monsters(self):
+        for y in range(3):
+            for x in range(9):
+                self.all_monsters.add(Monster(self, 150 + 90*x, 50 + 90*y))
 
     def update(self):
 
@@ -44,6 +58,14 @@ class Game():
 
         # setup projectiles images
         self.player.all_projectiles.draw(self.screen)
+
+        # update monsters
+        for monster in self.all_monsters:
+            monster.move()
+            monster.animate()
+
+        # setup monsters images
+        self.all_monsters.draw(self.screen)
 
         # check ship movements
         if self.pressed.get(pygame.K_RIGHT) \
