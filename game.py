@@ -21,16 +21,24 @@ class Game():
 
     def update(self):
 
-        #appliquer l'image du joueur
+        # setup player image
         self.screen.blit(self.player.image, self.player.rect)
 
-        # actualiser l'animation du joueur
+        # update player animation
         self.player.animate()
 
-        # actualiser la barre de vie du joueur
+        # update player health bar
         self.player.update_health_bar(self.screen)
 
-        # verifier si le joueur souhaite bouger le vaisseau
+        # move player projectiles
+        for projectile in self.player.all_projectiles:
+            projectile.move()
+            projectile.animate()
+
+        # setup projectiles images
+        self.player.all_projectiles.draw(self.screen)
+
+        # check ship movements
         if self.pressed.get(pygame.K_RIGHT) \
                 and self.player.rect.x + self.player.rect.width < self.screen.get_width():
             self.player.move_right()
