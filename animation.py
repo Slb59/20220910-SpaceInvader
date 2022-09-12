@@ -15,9 +15,9 @@ class AnimateSprite(pygame.sprite.Sprite):
 
         self.scale = 4
 
-    def get_image(self, x, y):
-        image = pygame.Surface([16, 24])
-        image.blit(self.sprite_sheet, (0, 0), (x, y, 16, 24))
+    def get_image(self, x, y, h=24):
+        image = pygame.Surface([16, h])
+        image.blit(self.sprite_sheet, (0, 0), (x, y, 16, h))
         return image
 
     def animate(self):

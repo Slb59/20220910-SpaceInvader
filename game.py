@@ -1,3 +1,5 @@
+import random
+
 import pygame
 from player import Player
 import math
@@ -17,6 +19,10 @@ class Game():
 
         # set the monster group
         self.all_monsters = pygame.sprite.Group()
+
+        # launch bullets
+        self.bullet_cooldown = 500
+        self.last_shoot = pygame.time.get_ticks()
 
         # ensemble des touches utilisees
         self.pressed = {}
@@ -59,13 +65,30 @@ class Game():
         # setup projectiles images
         self.player.all_projectiles.draw(self.screen)
 
+        # setup an attaking monster
+        time_now = pygame.time.get_ticks()
+        if time_now - self.last_shoot > self.bullet_cooldown:
+            alien = random.choice(self.all_monsters.sprites())
+            alien.launch_bullet()
+            self.last_shoot = time_now
+
         # update monsters
         for monster in self.all_monsters:
             monster.move()
             monster.animate()
 
+            # setup bullets images
+            monster.all_bullets.draw(self.screen)
+
+            for bullet in monster.all_bullets:
+                bullet.move(self.screen)
+                bullet.animate()
+
         # setup monsters images
         self.all_monsters.draw(self.screen)
+
+
+
 
         # check ship movements
         if self.pressed.get(pygame.K_RIGHT) \

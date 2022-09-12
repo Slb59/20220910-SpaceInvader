@@ -1,7 +1,4 @@
-import pygame
-
 import animation
-
 
 class Projectile(animation.AnimateSprite):
 

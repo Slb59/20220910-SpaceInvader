@@ -1,6 +1,6 @@
 import pygame
-import random
 import animation
+from monsterbullets import MonsterBullet
 
 class Monster(animation.AnimateSprite):
 
@@ -18,6 +18,11 @@ class Monster(animation.AnimateSprite):
         self.move_counter = 0
         self.move_direction = 1
 
+        self.all_bullets = pygame.sprite.Group()
+
+
+    def launch_bullet(self):
+        self.all_bullets.add(MonsterBullet(self))
 
     def move(self):
         self.rect.x += self.move_direction
