@@ -33,8 +33,8 @@ class Player(animation.AnimateSprite):
         self.game = game
 
     def launch_projectile(self):
-        print('new projectile')
         self.all_projectiles.add(Projectile(self))
+        self.game.sound_manager.play('tir')
 
     def update_health_bar(self, surface):
 

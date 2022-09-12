@@ -1,6 +1,7 @@
 import pygame
 from player import Player
 import math
+from sounds import SoundManager
 
 class Game():
 
@@ -15,6 +16,12 @@ class Game():
 
         # ensemble des touches utilisees
         self.pressed = {}
+
+        #manage sound
+        self.sound_manager = SoundManager()
+
+    def start(self):
+        self.sound_manager.play_ambiant()
 
     def game_over(self):
         self.player.health = self.player.max_health

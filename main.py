@@ -2,6 +2,7 @@ import pygame
 from game import Game
 
 pygame.init()
+pygame.mixer.init()
 
 # definir une clock
 clock = pygame.time.Clock()
@@ -24,6 +25,8 @@ running = True
 
 background_loop_i = 0
 
+game.start()
+
 while running:
 
     clock.tick(FPS)
@@ -41,6 +44,8 @@ while running:
     if background_loop_i == SCREEN_HEIGHT:
         background_loop_i = 0
     background_loop_i += 1
+
+
 
     for event in pygame.event.get():
 
