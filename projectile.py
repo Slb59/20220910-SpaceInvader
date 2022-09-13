@@ -28,4 +28,9 @@ class Projectile(animation.AnimateSprite):
         if self.rect.y < 0:
             self.remove()
 
+        # check if projectile collide a monster
+        for monster in self.player.game.check_collision(self, self.player.game.all_monsters):
+            self.remove()
+            monster.damage()
+
 

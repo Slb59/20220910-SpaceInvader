@@ -23,6 +23,11 @@ class MonsterBullet(animation.AnimateSprite):
     def move(self, screen):
         self.rect.y += self.velocity
 
+        # check if projectile collide with the player
+        for player in self.monster.game.check_collision(self, self.monster.game.all_players):
+            self.remove()
+            player.damage()
+
         # check if projectile is not in the screen
         if self.rect.y > screen.get_height():
             self.remove()

@@ -20,6 +20,9 @@ class Monster(animation.AnimateSprite):
 
         self.all_bullets = pygame.sprite.Group()
 
+    def damage(self):
+        self.game.sound_manager.play('explosion')
+        self.game.all_monsters.remove(self)
 
     def launch_bullet(self):
         self.all_bullets.add(MonsterBullet(self))

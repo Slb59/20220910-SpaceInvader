@@ -46,6 +46,9 @@ class Game():
             for x in range(9):
                 self.all_monsters.add(Monster(self, 150 + 90*x, 50 + 90*y))
 
+    def check_collision(self, sprite, group):
+        return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
+
     def update(self):
 
         # setup player image
@@ -67,7 +70,7 @@ class Game():
 
         # setup an attaking monster
         time_now = pygame.time.get_ticks()
-        if time_now - self.last_shoot > self.bullet_cooldown:
+        if time_now - self.last_shoot > self.bullet_cooldown and len(self.all_monsters) > 0:
             alien = random.choice(self.all_monsters.sprites())
             alien.launch_bullet()
             self.last_shoot = time_now

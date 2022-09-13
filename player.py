@@ -32,6 +32,13 @@ class Player(animation.AnimateSprite):
 
         self.game = game
 
+    def damage(self):
+        self.game.sound_manager.play('explosion')
+        self.health -= 10
+        if self.health <= 0:
+            self.game.game_over()
+
+
     def launch_projectile(self):
         self.all_projectiles.add(Projectile(self))
         self.game.sound_manager.play('tir')

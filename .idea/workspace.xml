@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab10a18-7b7a-4cfe-95b1-ee3dad9552ca" name="Changes" comment="Add Ennemies">
-      <change afterPath="$PROJECT_DIR$/monsterbullets.py" afterDir="false" />
+    <list default="true" id="5ab10a18-7b7a-4cfe-95b1-ee3dad9552ca" name="Changes" comment="Add Ennemy bullets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animation.py" beforeDir="false" afterPath="$PROJECT_DIR$/animation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monster.py" beforeDir="false" afterPath="$PROJECT_DIR$/monster.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsterbullets.py" beforeDir="false" afterPath="$PROJECT_DIR$/monsterbullets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectile.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds.py" beforeDir="false" afterPath="$PROJECT_DIR$/sounds.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662994434745</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add Ennemy bullets">
+      <created>1663010461637</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1663010461661</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,6 +186,7 @@
     <MESSAGE value="Add projectile" />
     <MESSAGE value="Add sounds manager" />
     <MESSAGE value="Add Ennemies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Ennemies" />
+    <MESSAGE value="Add Ennemy bullets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Ennemy bullets" />
   </component>
 </project>
