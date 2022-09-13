@@ -1,7 +1,7 @@
 import pygame
 import animation
-import random
 from projectile import Projectile
+from explosion import Explosion
 
 class Player(animation.AnimateSprite):
 
@@ -33,7 +33,14 @@ class Player(animation.AnimateSprite):
         self.game = game
 
     def damage(self):
+
+        # setup explosion image
+        self.game.all_explosions.add(Explosion(self.game, self.rect.centerx, self.rect.top))
+
+        # play sound
         self.game.sound_manager.play('explosion')
+
+        # check if game_over
         self.health -= 10
         if self.health <= 0:
             self.game.game_over()

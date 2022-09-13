@@ -5,6 +5,7 @@ from player import Player
 import math
 from sounds import SoundManager
 from monster import Monster
+from explosion import Explosion
 
 class Game():
 
@@ -19,6 +20,9 @@ class Game():
 
         # set the monster group
         self.all_monsters = pygame.sprite.Group()
+
+        # set the explosion group
+        self.all_explosions = pygame.sprite.Group()
 
         # launch bullets
         self.bullet_cooldown = 500
@@ -65,6 +69,18 @@ class Game():
             projectile.move()
             projectile.animate()
 
+        # animate explosion
+        for explosion in self.all_explosions:
+            time_now = pygame.time.get_ticks()
+            if time_now - explosion.last_explosion > explosion.explosion_duration:
+                explosion.remove()
+            else:
+                explosion.animate()
+
+        self.all_explosions.draw(self.screen)
+
+
+
         # setup projectiles images
         self.player.all_projectiles.draw(self.screen)
 
@@ -89,9 +105,6 @@ class Game():
 
         # setup monsters images
         self.all_monsters.draw(self.screen)
-
-
-
 
         # check ship movements
         if self.pressed.get(pygame.K_RIGHT) \

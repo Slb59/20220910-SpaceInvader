@@ -22,7 +22,7 @@ class AnimateSprite(pygame.sprite.Sprite):
 
     def animate(self):
         # next to the next image
-        self.current_image = random.randint(0, 1)
+        self.current_image = random.randint(0, len(self.animation_images) - 1)
 
         # update image from the current animation
         self.image = self.animation_images[self.current_image]

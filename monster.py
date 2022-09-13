@@ -1,6 +1,7 @@
 import pygame
 import animation
 from monsterbullets import MonsterBullet
+from explosion import Explosion
 
 class Monster(animation.AnimateSprite):
 
@@ -21,7 +22,11 @@ class Monster(animation.AnimateSprite):
         self.all_bullets = pygame.sprite.Group()
 
     def damage(self):
+        # setup explosion image
+        self.game.all_explosions.add(Explosion(self.game, self.rect.centerx, self.rect.top))
+        # play sound
         self.game.sound_manager.play('explosion')
+        # kill the monster
         self.game.all_monsters.remove(self)
 
     def launch_bullet(self):
