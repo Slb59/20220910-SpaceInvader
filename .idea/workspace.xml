@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab10a18-7b7a-4cfe-95b1-ee3dad9552ca" name="Changes" comment="Add player and center animation">
+    <list default="true" id="5ab10a18-7b7a-4cfe-95b1-ee3dad9552ca" name="Changes" comment="Add explosion animation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monster.py" beforeDir="false" afterPath="$PROJECT_DIR$/monster.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +35,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="20220910-SpaceInvader" />
@@ -115,7 +114,70 @@
       <option name="project" value="LOCAL" />
       <updated>1662838147320</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add player animations">
+      <created>1662887718126</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1662887718173</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add player health bar">
+      <created>1662889849369</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1662889849369</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add projectile">
+      <created>1662974891884</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1662974891931</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add sounds manager">
+      <created>1662990558773</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1662990558805</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add Ennemies">
+      <created>1662994434725</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1662994434745</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add Ennemy bullets">
+      <created>1663010461637</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1663010461661</updated>
+    </task>
+    <task id="LOCAL-00013" summary="check collision">
+      <created>1663062341670</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1663062341701</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add explosion animation">
+      <created>1663078947890</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1663078947937</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add explosion animation">
+      <created>1663078955811</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1663078955811</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,6 +198,14 @@
     <MESSAGE value="Creation de l'environnement de développement" />
     <MESSAGE value="Add the background" />
     <MESSAGE value="Add player and center animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add player and center animation" />
+    <MESSAGE value="Add player animations" />
+    <MESSAGE value="Add player health bar" />
+    <MESSAGE value="Add projectile" />
+    <MESSAGE value="Add sounds manager" />
+    <MESSAGE value="Add Ennemies" />
+    <MESSAGE value="Add Ennemy bullets" />
+    <MESSAGE value="check collision" />
+    <MESSAGE value="Add explosion animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add explosion animation" />
   </component>
 </project>

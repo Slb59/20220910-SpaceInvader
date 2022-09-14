@@ -2,6 +2,7 @@ import pygame
 from game import Game
 
 pygame.init()
+pygame.mixer.init()
 
 # definir une clock
 clock = pygame.time.Clock()
@@ -18,18 +19,20 @@ background = pygame.image.load('assets/desert-background-looped.png')
 background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT*2))
 
 # charger le jeu
-game = Game()
+game = Game(screen)
 
 running = True
 
 background_loop_i = 0
+
+game.start()
 
 while running:
 
     clock.tick(FPS)
 
     # mise a jour du jeu
-    game.update(screen)
+    game.update()
 
     # mettre a jour l'ecran
     pygame.display.flip()
@@ -41,6 +44,8 @@ while running:
     if background_loop_i == SCREEN_HEIGHT:
         background_loop_i = 0
     background_loop_i += 1
+
+
 
     for event in pygame.event.get():
 
@@ -55,6 +60,9 @@ while running:
         # le joueur lache une touche du clavier
         elif event.type == pygame.KEYDOWN:
             game.pressed[event.key] = True
+
+            if event.key == pygame.K_SPACE:
+                game.player.launch_projectile()
 
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
