@@ -46,6 +46,9 @@ class Game():
         self.countdown = 4
         self.last_countdown = pygame.time.get_ticks()
 
+        # set if the game is playing
+        self.is_game_over = False
+
     def add_score(self, points=10):
         self.score += points
 
@@ -60,8 +63,13 @@ class Game():
         # delete all monsters
         self.all_monsters = pygame.sprite.Group()
 
-        # set the score to 0
-        self.score = 0
+        self.is_game_over = True
+        self.countdown = 3
+
+        self.add_27_monsters()
+
+        self.all_explosions = pygame.sprite.Group()
+        self.player.all_projectiles = pygame.sprite.Group()
 
     def add_27_monsters(self):
         for y in range(3):
@@ -73,10 +81,6 @@ class Game():
 
     def update(self):
 
-        # draw th score
-        score_text = self.score_font.render(f"Score : {self.score}", 1, (0, 0, 0))
-        self.screen.blit(score_text, (20, 20))
-
         # setup player image
         self.screen.blit(self.player.image, self.player.rect)
 
@@ -86,7 +90,11 @@ class Game():
         # update player health bar
         self.player.update_health_bar(self.screen)
 
-        if self.countdown == 0:
+        if self.countdown == 0 and not self.is_game_over:
+
+            # draw the score
+            score_text = self.score_font.render(f"Score : {self.score}", 1, (0, 0, 0))
+            self.screen.blit(score_text, (20, 20))
 
             # move player projectiles
             for projectile in self.player.all_projectiles:
@@ -128,7 +136,7 @@ class Game():
             # setup monsters images
             self.all_monsters.draw(self.screen)
 
-        else:  # countdown > 0
+        elif self.countdown > 0 and not self.is_game_over:
             delay_text = self.font1.render(f"GET READY", 1, (0, 0, 0))
             self.screen.blit(delay_text, (
                 math.ceil(self.screen.get_width() / 2) - 100,
@@ -143,6 +151,29 @@ class Game():
             if count_timer - self.last_countdown > 1000:
                 self.countdown -= 1
                 self.last_countdown = count_timer
+
+        elif self.countdown > 0 and self.is_game_over:
+            text = self.font1.render(f"GAME OVER", 1, (0, 0, 0))
+            self.screen.blit(text, (
+                math.ceil(self.screen.get_width() / 2) - 100,
+                math.ceil(self.screen.get_height() / 2) - 100)
+                             )
+            text = self.font1.render(f"Score : {self.score}", 1, (0, 0, 0))
+            self.screen.blit(text, (
+                math.ceil(self.screen.get_width() / 2) - 100,
+                math.ceil(self.screen.get_height() / 2) - 30)
+                             )
+            count_timer = pygame.time.get_ticks()
+            if count_timer - self.last_countdown > 1000:
+                self.countdown -= 1
+                self.last_countdown = count_timer
+
+        # set the play again
+        elif self.countdown == 0 and self.is_game_over:
+            self.is_game_over = False
+            # set the score to 0
+            self.score = 0
+            self.countdown = 4
 
         # check ship movements
         if self.pressed.get(pygame.K_RIGHT) \

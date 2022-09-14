@@ -30,6 +30,8 @@ class Monster(animation.AnimateSprite):
         self.game.all_monsters.remove(self)
         # add a score points
         self.game.add_score()
+        if len(self.game.all_monsters) == 0:
+            self.game.game_over()
 
     def launch_bullet(self):
         self.all_bullets.add(MonsterBullet(self))
