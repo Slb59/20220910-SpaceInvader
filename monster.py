@@ -28,6 +28,8 @@ class Monster(animation.AnimateSprite):
         self.game.sound_manager.play('explosion')
         # kill the monster
         self.game.all_monsters.remove(self)
+        # add a score points
+        self.game.add_score()
 
     def launch_bullet(self):
         self.all_bullets.add(MonsterBullet(self))

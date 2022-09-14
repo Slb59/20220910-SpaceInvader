@@ -31,8 +31,16 @@ class Game():
         # ensemble des touches utilisees
         self.pressed = {}
 
-        #manage sound
+        # manage sound
         self.sound_manager = SoundManager()
+
+        # load the police
+        self.font = pygame.font.Font("assets/my_custom_font.ttf", 25)
+        # set the score to 0
+        self.score = 0
+
+    def add_score(self, points=10):
+        self.score += points
 
     def start(self):
         self.sound_manager.play_ambiant()
@@ -45,6 +53,9 @@ class Game():
         # delete all monsters
         self.all_monsters = pygame.sprite.Group()
 
+        # set the score to 0
+        self.score = 0
+
     def add_27_monsters(self):
         for y in range(3):
             for x in range(9):
@@ -54,6 +65,10 @@ class Game():
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
     def update(self):
+
+        # draw th score
+        score_text = self.font.render(f"Score : {self.score}", 1, (0, 0, 0))
+        self.screen.blit(score_text, (20, 20))
 
         # setup player image
         self.screen.blit(self.player.image, self.player.rect)
