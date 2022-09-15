@@ -35,9 +35,19 @@ class Game():
         self.sound_manager = SoundManager()
 
         # load the police
-        self.font = pygame.font.Font("assets/my_custom_font.ttf", 25)
+        self.score_font = pygame.font.Font("assets/my_custom_font.ttf", 25)
+        self.font1 = pygame.font.Font("assets/my_custom_font.ttf", 40)
+        self.font2 = pygame.font.Font("assets/my_custom_font.ttf", 50)
+
         # set the score to 0
         self.score = 0
+
+        # start counter
+        self.countdown = 4
+        self.last_countdown = pygame.time.get_ticks()
+
+        # set if the game is playing
+        self.is_game_over = False
 
     def add_score(self, points=10):
         self.score += points
@@ -53,8 +63,13 @@ class Game():
         # delete all monsters
         self.all_monsters = pygame.sprite.Group()
 
-        # set the score to 0
-        self.score = 0
+        self.is_game_over = True
+        self.countdown = 3
+
+        self.add_27_monsters()
+
+        self.all_explosions = pygame.sprite.Group()
+        self.player.all_projectiles = pygame.sprite.Group()
 
     def add_27_monsters(self):
         for y in range(3):
@@ -66,10 +81,6 @@ class Game():
 
     def update(self):
 
-        # draw th score
-        score_text = self.font.render(f"Score : {self.score}", 1, (0, 0, 0))
-        self.screen.blit(score_text, (20, 20))
-
         # setup player image
         self.screen.blit(self.player.image, self.player.rect)
 
@@ -79,47 +90,90 @@ class Game():
         # update player health bar
         self.player.update_health_bar(self.screen)
 
-        # move player projectiles
-        for projectile in self.player.all_projectiles:
-            projectile.move()
-            projectile.animate()
+        if self.countdown == 0 and not self.is_game_over:
 
-        # animate explosion
-        for explosion in self.all_explosions:
+            # draw the score
+            score_text = self.score_font.render(f"Score : {self.score}", 1, (0, 0, 0))
+            self.screen.blit(score_text, (20, 20))
+
+            # move player projectiles
+            for projectile in self.player.all_projectiles:
+                projectile.move()
+                projectile.animate()
+
+            # animate explosion
+            for explosion in self.all_explosions:
+                time_now = pygame.time.get_ticks()
+                if time_now - explosion.last_explosion > explosion.explosion_duration:
+                    explosion.remove()
+                else:
+                    explosion.animate()
+
+            self.all_explosions.draw(self.screen)
+
+            # setup projectiles images
+            self.player.all_projectiles.draw(self.screen)
+
+            # setup an attaking monster
             time_now = pygame.time.get_ticks()
-            if time_now - explosion.last_explosion > explosion.explosion_duration:
-                explosion.remove()
-            else:
-                explosion.animate()
+            if time_now - self.last_shoot > self.bullet_cooldown and len(self.all_monsters) > 0:
+                alien = random.choice(self.all_monsters.sprites())
+                alien.launch_bullet()
+                self.last_shoot = time_now
 
-        self.all_explosions.draw(self.screen)
+            # update monsters
+            for monster in self.all_monsters:
+                monster.move()
+                monster.animate()
 
+                # setup bullets images
+                monster.all_bullets.draw(self.screen)
 
+                for bullet in monster.all_bullets:
+                    bullet.move(self.screen)
+                    bullet.animate()
 
-        # setup projectiles images
-        self.player.all_projectiles.draw(self.screen)
+            # setup monsters images
+            self.all_monsters.draw(self.screen)
 
-        # setup an attaking monster
-        time_now = pygame.time.get_ticks()
-        if time_now - self.last_shoot > self.bullet_cooldown and len(self.all_monsters) > 0:
-            alien = random.choice(self.all_monsters.sprites())
-            alien.launch_bullet()
-            self.last_shoot = time_now
+        elif self.countdown > 0 and not self.is_game_over:
+            delay_text = self.font1.render(f"GET READY", 1, (0, 0, 0))
+            self.screen.blit(delay_text, (
+                math.ceil(self.screen.get_width() / 2) - 100,
+                math.ceil(self.screen.get_height() / 2) - 100)
+            )
+            delay_value = self.font2.render(f"{self.countdown}", 1, (0, 0, 0))
+            self.screen.blit(delay_value, (
+                math.ceil(self.screen.get_width() / 2) - 40,
+                math.ceil(self.screen.get_height() / 2) - 50)
+            )
+            count_timer = pygame.time.get_ticks()
+            if count_timer - self.last_countdown > 1000:
+                self.countdown -= 1
+                self.last_countdown = count_timer
 
-        # update monsters
-        for monster in self.all_monsters:
-            monster.move()
-            monster.animate()
+        elif self.countdown > 0 and self.is_game_over:
+            text = self.font1.render(f"GAME OVER", 1, (0, 0, 0))
+            self.screen.blit(text, (
+                math.ceil(self.screen.get_width() / 2) - 100,
+                math.ceil(self.screen.get_height() / 2) - 100)
+                             )
+            text = self.font1.render(f"Score : {self.score}", 1, (0, 0, 0))
+            self.screen.blit(text, (
+                math.ceil(self.screen.get_width() / 2) - 100,
+                math.ceil(self.screen.get_height() / 2) - 30)
+                             )
+            count_timer = pygame.time.get_ticks()
+            if count_timer - self.last_countdown > 1000:
+                self.countdown -= 1
+                self.last_countdown = count_timer
 
-            # setup bullets images
-            monster.all_bullets.draw(self.screen)
-
-            for bullet in monster.all_bullets:
-                bullet.move(self.screen)
-                bullet.animate()
-
-        # setup monsters images
-        self.all_monsters.draw(self.screen)
+        # set the play again
+        elif self.countdown == 0 and self.is_game_over:
+            self.is_game_over = False
+            # set the score to 0
+            self.score = 0
+            self.countdown = 4
 
         # check ship movements
         if self.pressed.get(pygame.K_RIGHT) \
